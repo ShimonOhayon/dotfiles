@@ -1,0 +1,17 @@
+#!/bin/bash
+# Install with:
+# pre-commit install --hook-type prepare-commit-msg --config /path/to/.pre-commit-config.yaml
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+
+if [[ -z "$COMMIT_SOURCE" ]]
+then
+  BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+  if [[ "${BRANCH_NAME}" != "HEAD" ]] && [[ "${BRANCH_NAME}" =~ ^((SRE|N2EOS)-[0-9]+)+ ]]
+  then
+    ISSUE="${BASH_REMATCH[1]}"
+    echo "${ISSUE}: $(cat "$COMMIT_MSG_FILE")" > "$COMMIT_MSG_FILE" 2>/dev/null
+  fi
+fi
