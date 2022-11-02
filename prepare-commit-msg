@@ -12,6 +12,6 @@ then
   if [[ "${BRANCH_NAME}" != "HEAD" ]] && [[ "${BRANCH_NAME}" =~ ^((SRE|N2EOS)-[0-9]+)+ ]]
   then
     ISSUE="${BASH_REMATCH[1]}"
-    echo "${ISSUE}: $(cat "$COMMIT_MSG_FILE")" > "$COMMIT_MSG_FILE" 2>/dev/null
+    echo "${ISSUE} $(cat "$COMMIT_MSG_FILE")" > "$COMMIT_MSG_FILE" 2>/dev/null
   fi
 fi
