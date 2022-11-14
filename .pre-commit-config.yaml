@@ -2,7 +2,7 @@ repos:
 -   repo: local
     hooks:
     - id: prepare-commit-msg
-      name: <0> Prepare-commit-msg
+      name: Prepare-commit-msg
       entry: "/Users/shimon.ohayon/code/dotfiles/prepare-commit-msg"
       stages: [prepare-commit-msg]
       language: script
@@ -11,24 +11,29 @@ repos:
     rev: v0.3.2
     hooks:
     - id: terraform-fmt
-      name: <1> Terraform Format
+      name: Terraform Format
     - id: tflint
-      name: <2> Terraform Lint
+      name: Terraform Lint
 
 -   repo: https://github.com/adrienverge/yamllint.git
     rev: v1.17.0
     hooks:
     - id: yamllint
-      name: <3> Yaml Lint
+      name: Yaml Lint
       args: [-c=/Users/shimon.ohayon/code/dotfiles/.yamllint.yml]
 
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
+    - id: check-json
+      name: Check JSON
+    - id: pretty-format-json
+      name: Pretty JSON
+      args: ['--autofix']
     - id: trailing-whitespace
-      name: <4> Trailing whitespace
+      name: Trailing whitespace
     - id: end-of-file-fixer
-      name: <5> End of file fixer
+      name: End of file fixer
     - id: no-commit-to-branch
-      name: <6> No commit to branch
+      name: No commit to branch
       args: ['--pattern', '^(?!(SRE|N2EOS)-[0-9]+\/([a-zA-Z0-9]|-)+)']
