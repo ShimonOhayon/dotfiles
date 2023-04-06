@@ -6,7 +6,11 @@ repos:
       entry: "/Users/shimon.ohayon/code/dotfiles/prepare-commit-msg"
       stages: [prepare-commit-msg]
       language: script
-
+-   repo: https://github.com/golangci/golangci-lint
+    rev: v1.50.1
+    hooks:
+    - id: golangci-lint
+      name: Go Lang Lint
 -   repo: https://github.com/mineiros-io/pre-commit-hooks
     rev: v0.3.2
     hooks:
@@ -21,15 +25,20 @@ repos:
     - id: yamllint
       name: Yaml Lint
       args: [-c=/Users/shimon.ohayon/code/dotfiles/.yamllint.yml]
-
+-   repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.9.0
+    hooks:
+    -   id: shellcheck
+-   repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.6.0-1
+    hooks:
+    - id: shfmt
+      name: shfmt
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
     - id: check-json
       name: Check JSON
-    - id: pretty-format-json
-      name: Pretty JSON
-      args: ['--autofix']
     - id: trailing-whitespace
       name: Trailing whitespace
     - id: end-of-file-fixer
